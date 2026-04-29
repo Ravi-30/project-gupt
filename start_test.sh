@@ -7,8 +7,15 @@ echo "=========================================="
 
 # 1. Start the Relay Server
 echo "📡 [1/3] Booting Relay Server on port 3900..."
+
+if ! command -v node >/dev/null 2>&1; then
+    echo "❌ Error: Node.js is not installed! The Relay Server requires Node.js."
+    echo "Please install it from https://nodejs.org/ and try again."
+    exit 1
+fi
+
 cd RelayServer
-npm install ws --silent > /dev/null 2>&1
+npm install ws --silent > /dev/null 2>&1 || true
 # Ensure no ghost node server is hogging port 3900
 lsof -ti:3900 | xargs kill -9 2>/dev/null || true
 node server.js > /dev/null 2>&1 &

@@ -17,7 +17,8 @@ swift build -c "${BUILD_CONFIGURATION}"
 echo "📦 Packaging into ${APP_BUNDLE}..."
 mkdir -p "${APP_BUNDLE}/Contents/MacOS"
 
-cp "${BUILD_DIR}/apple/Products/Release/${EXECUTABLE_NAME}" "${APP_BUNDLE}/Contents/MacOS/${APP_NAME}"
+BIN_PATH=$(swift build -c "${BUILD_CONFIGURATION}" --show-bin-path)
+cp "${BIN_PATH}/${EXECUTABLE_NAME}" "${APP_BUNDLE}/Contents/MacOS/${APP_NAME}"
 
 cat <<EOF > "${APP_BUNDLE}/Contents/Info.plist"
 <?xml version="1.0" encoding="UTF-8"?>
