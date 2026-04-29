@@ -11,8 +11,8 @@ APP_BUNDLE="${APP_NAME}.app"
 echo "🧹 Cleaning up old builds..."
 rm -rf "${APP_BUNDLE}" "${BUILD_DIR}"
 
-echo "🔨 Building ${APP_NAME} (Universal ${BUILD_CONFIGURATION})..."
-swift build -c "${BUILD_CONFIGURATION}" --arch x86_64 --arch arm64
+echo "🔨 Building ${APP_NAME} (Native ${BUILD_CONFIGURATION})..."
+swift build -c "${BUILD_CONFIGURATION}"
 
 echo "📦 Packaging into ${APP_BUNDLE}..."
 mkdir -p "${APP_BUNDLE}/Contents/MacOS"
